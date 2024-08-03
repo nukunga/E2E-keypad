@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Keypad App</title>
+    <style>
+        .keypad-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .keypad-button {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1>Keypad Application</h1>
+<form action="/api/keypad/user/add" method="post">
+    <label for="id">User ID:</label>
+    <input type="text" id="id" name="id" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Register</button>
+</form>
+<br>
+<button onclick="generateKeypad()">Generate Keypad</button>
+<div class="keypad-container" id="keypad"></div>
+<form id="validateForm" action="/api/keypad/validate" method="get">
+    <input type="hidden" id="userId" name="userId" value="">
+    <input type="hidden" id="keypadId" name="keypadId" value="">
+    <input type="hidden" id="hashedInputs" name="hashedInputs" value="">
+    <button type="submit">Validate</button>
+</form>
+<div id="result"></div>
+<script>
+    function generateKeypad() {
+        fetch('/api/keypad/generate', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('keypadId').value = data.keypadId;
+                const keypadDiv = document.getElementById('keypad');
+                keypadDiv.innerHTML = '';
+                data.keyMappings.forEach(row => {
+                    row.forEach(mapping => {
+                        const button = document.createElement('button');
+                        button.type = 'button';
+                        button.classList.add('keypad-button');
+                        button.onclick = () => addToInput(mapping.hash);
+                        const img = document.createElement('img');
+                        img.src = 'data:image/png;base64,' + mapping.image;
+                        img.alt = mapping.hash;
+                        button.appendChild(img);
+                        keypadDiv.appendChild(button);
+                    });
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function addToInput(hash) {
+        const hashedInputs = document.getElementById('hashedInputs');
+        hashedInputs.value += (hashedInputs.value ? ',' : '') + hash;
+    }
+
+    document.getElementById('validateForm').onsubmit = function () {
+        document.getElementById('userId').value = document.getElementById('id').value;
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Keypad</title>
+</head>
+<body>
+<div>
+    <h2>Generated Keypad</h2>
+    <div>
+        <input type="hidden" id="keypadId" th:value="${keypad.id}">
+        <div th:each="keyMapping : ${keypad.keyMappings}">
+            <img th:src="'data:image/png;base64,' + ${keyMapping.image}" th:alt="${keyMapping.hash}" onclick="addToInput(this.alt)">
+        </div>
+    </div>
+</div>
+<form id="validateForm" action="/api/keypad/validate" method="get">
+    <input type="hidden" id="userId" name="userId" value="">
+    <input type="hidden" id="keypadId" name="keypadId" th:value="${keypad.id}">
+    <input type="hidden" id="hashedInputs" name="hashedInputs" value="">
+    <button type="submit">Validate</button>
+</form>
+<div id="result"></div>
+<script>
+    function addToInput(hash) {
+        const hashedInputs = document.getElementById('hashedInputs');
+        hashedInputs.value += (hashedInputs.value ? ',' : '') + hash;
+    }
+
+    document.getElementById('validateForm').onsubmit = function () {
+        document.getElementById('userId').value = prompt('Enter User ID:');
+    };
+</script>
+</body>
+</html>
