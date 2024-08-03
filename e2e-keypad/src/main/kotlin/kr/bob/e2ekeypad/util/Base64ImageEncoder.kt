@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.util
+package kr.bob.e2ekeypad.util
 
 import java.util.*
 import java.io.File

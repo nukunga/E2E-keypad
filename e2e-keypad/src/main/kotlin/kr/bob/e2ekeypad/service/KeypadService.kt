@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.service
+package kr.bob.e2ekeypad.service
 
 import kr.bob.e2ekeypadver2.model.Keypad
 import kr.bob.e2ekeypadver2.util.Base64ImageEncoder

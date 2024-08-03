@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2
+package kr.bob.e2ekeypad
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

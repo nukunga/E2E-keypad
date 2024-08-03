@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.model
+package kr.bob.e2ekeypad.model
 
 data class User(
     val id: String,

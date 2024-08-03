@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.service
+package kr.bob.e2ekeypad.service
 
 import kr.bob.e2ekeypadver2.model.User
 import org.springframework.data.redis.core.RedisTemplate

@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.config
+package kr.bob.e2ekeypad.config
 
 import kr.bob.e2ekeypadver2.model.Keypad
 import org.springframework.context.annotation.Bean

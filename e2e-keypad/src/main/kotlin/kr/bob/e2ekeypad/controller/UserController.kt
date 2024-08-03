@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.controller
+package kr.bob.e2ekeypad.controller
 
 import kr.bob.e2ekeypadver2.model.User
 import kr.bob.e2ekeypadver2.service.UserService

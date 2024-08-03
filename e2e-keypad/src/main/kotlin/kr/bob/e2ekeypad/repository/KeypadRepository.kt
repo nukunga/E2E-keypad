@@ -1,4 +1,4 @@
-package kr.bob.e2ekeypadver2.repository
+package kr.bob.e2ekeypad.repository
 
 import kr.bob.e2ekeypadver2.model.Keypad
 import org.springframework.data.repository.CrudRepository
